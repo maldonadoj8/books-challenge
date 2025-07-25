@@ -55,3 +55,9 @@ La documentacion interactiva de la API esta disponible en:
 http://localhost:3000/api-docs
 ```
 Una vez iniciado el backend, puedes consultar y probar los endpoints desde esa URL.
+
+## Usuario para usar el sistema
+Usuario: admin@example.com
+Password: admin123
+
+Para facilidad de usos omite temas de seguridad como ocultar ocultar palabra secreta para firmar contrasenas o usuarios en repositorio.
