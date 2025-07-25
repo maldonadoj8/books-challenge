@@ -61,3 +61,8 @@ Usuario: admin@example.com
 Password: admin123
 
 Para facilidad de usos omite temas de seguridad como ocultar ocultar palabra secreta para firmar contrasenas o usuarios en repositorio.
+
+## Archivo para carga masiva
+Se incluye un archivo csv 'libros-validos-1.csv' para probar la funcionalidad de carga masiva.
+De igual manera se puede cargar un archivo personalizado con las columnas title, isbn, authorName y pageCount.
+Tome esta estructura ya que el ejercicio no mencionaba una estandar.
