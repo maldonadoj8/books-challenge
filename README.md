@@ -1,111 +1,57 @@
-# Books Challenge Backend
+# Books Challenge Backend & Frontend
 
-## Descripción General
-Este proyecto es una API backend en Node.js para la gestión de libros, autores y 
-usuarios, con autenticacion, importación por CSV e integración con servicios 
-externos como descarga de caratulas de libros o validación de ISBN.
 
-## Patrones Arquitectónicos
+## Descripcion General
+Este proyecto incluye una API backend en Node.js y un frontend en React para la gestion de libros, autores y usuarios, con autenticacion, importacion por CSV e integracion con servicios externos como descarga de caratulas de libros y validacion de ISBN.
 
+### Herramientas y librerias clave
+- **Sequelize**: ORM para la gestion de la base de datos SQLite. Investigue su uso y configuracion ya que no lo habia utilizado previamente.
+- **SOAP**: Integracion para la validacion de ISBN. Tuve que investigar como consumir servicios SOAP desde Node.js.
+- **Axios**: Cliente HTTP para llamadas a APIs externas y consumo de servicios REST y SOAP. Aprendi sobre su uso para peticiones y manejo de respuestas.
+- **Swagger**: Documentacion interactiva de la API. Investigue como generar y exponer documentacion con swagger-jsdoc y swagger-ui-express.
+
+Estas herramientas fueron nuevas para mi y requirieron investigacion y pruebas para integrarlas correctamente en el proyecto.
+
+## Patrones Arquitectonicos
 - **MVC (Modelo-Vista-Controlador):**
-  - **Modelos** definen la estructura de datos y la logica ORM 
-  (Object-Relational Mapping).
+  - **Modelos** definen la estructura de datos y la logica ORM (Object-Relational Mapping).
   - **Controladores** gestionan la logica de negocio y las solicitudes.
   - **Rutas** mapean los endpoints HTTP a las acciones de los controladores.
-  - **Middleware** provee funcionalidades transversales (autenticacion, manejo 
-  de errores, subida de archivos).
+  - **Middleware** provee funcionalidades como autenticacion, manejo de errores y subida de archivos).
 
 - **Capa de Servicios:**
-  - Integraciones externas (por ejemplo, OpenLibrary, validación de 
-  ISBN vía SOAP) y logica de negocio reutilizable.
+  - Integraciones externas (por ejemplo, OpenLibrary, validacion de ISBN via SOAP).
 
-- **Capa de Validación:**
-  - Utiliza express-validator para la validación de solicitudes, separada en 
-  módulos de validación dedicados.
+- **Capa de Validacion:**
+  - Utiliza express-validator para la validacion de solicitudes, separada en modulos de validacion dedicados.
 
-- **Capa de Utilidades:**
-  - Funciones auxiliares comunes (por ejemplo, normalización de texto, parseo de 
-  CSV) están aisladas en `utils/`.
-
-- **Capa de Scripts:**
-  - Scripts independientes para la inicialización y carga de datos en la base de 
-  datos.
-
-## Estructura de Carpetas
-
-```
-backend/
-├── database.sqlite           # Archivo de base de datos SQLite
-├── package.json              # Dependencias y scripts del proyecto
-├── scripts/                  # Scripts independientes para setup y carga de datos
-│   ├── add-book.js
-│   └── init-db.js
-├── src/
-│   ├── index.js              # Punto de entrada de la app Express
-│   ├── config/               # Archivos de configuración (DB, Swagger)
-│   │   ├── database.js
-│   │   └── swagger.js
-│   ├── controllers/          # logica de manejo de rutas
-│   ├── middleware/           # Middleware de Express (auth, errores, uploads)
-│   │   ├── authMiddleware.js
-│   │   ├── errorHandler.js
-│   │   └── uploadMiddleware.js
-│   ├── models/               # Modelos Sequelize (Book, Author, User)
-│   │   ├── Author.js
-│   │   ├── Book.js
-│   │   └── User.js
-│   ├── routes/               # Definicion de rutas Express
-│   │   ├── authorRoutes.js
-│   │   ├── authRoutes.js
-│   │   └── bookRoutes.js
-│   ├── services/             # Integraciones con APIs/servicios externos
-│   │   ├── fetchCoverFromOpenLibrary.js
-│   │   └── validateIsbnWithSoap.js
-│   ├── utils/                # Funciones auxiliares
-│   │   ├── normalizeText.js
-│   │   └── parseCSV.js
-│   └── validators/           # logica de validación de solicitudes
-│       ├── author-validator.js
-│       └── book-validator.js
-└── tests/                    # (Opcional) Tests automatizados
-```
-
-
-## Librerías y Frameworks Utilizados
-
+## Librerias y Frameworks Utilizados
 - **Node.js & Express:** Framework principal del servidor y enrutamiento.
-- **Sequelize:** ORM para la gestión de la base de datos SQLite.
-- **express-validator:** Middleware para validación de solicitudes.
+- **Sequelize:** ORM para la gestion de la base de datos SQLite.
+- **express-validator:** Middleware para validacion de solicitudes.
 - **jsonwebtoken:** autenticacion basada en JWT.
-- **bcrypt:** Hashing de contraseñas para seguridad de usuarios.
-- **multer:** Manejo de subida de archivos (importación CSV).
-- **csv-parse:** Parseo de archivos CSV para importación masiva de libros.
+- **bcrypt:** Hashing de contrasenas para seguridad de usuarios.
+- **multer:** Manejo de subida de archivos (importacion CSV).
+- **csv-parse:** Parseo de archivos CSV para importacion masiva de libros.
 - **axios:** Cliente HTTP para llamadas a APIs externas (OpenLibrary, SOAP).
-- **swagger-jsdoc & swagger-ui-express:** Documentación de la API en `/api-docs`.
+- **swagger-jsdoc & swagger-ui-express:** Documentacion de la API en `/api-docs`.
+- **React:** Libreria para la construccion de componentes.
 
 
-## Funcionalidades Clave
+## Como ejecutar ambos proyectos juntos
+Puedes iniciar tanto el backend como el frontend con un solo comando, sin necesidad de instalar dependencias manualmente:
 
-- autenticacion JWT y gestión de usuarios
-- CRUD de autores y libros
-- Validación de ISBN-13 vía SOAP
-- Obtención de portadas de libros desde OpenLibrary
-- Importación masiva de libros vía CSV
-- Código modular, testeable y extensible
+### En Linux/macOS/WSL:
+sh start.sh
 
+### En Windows:
+start.bat
 
-## Primeros Pasos
+Esto instalara las dependencias, inicializara la base de datos y levantara ambos servidores automaticamente.
 
-1. Instalar dependencias:
-   ```sh
-   npm install
-   ```
-2. Inicializar la base de datos:
-   ```sh
-   node scripts/init-db.js
-   ```
-3. Iniciar el servidor:
-   ```sh
-   npm start
-   ```
-4. Acceder a la documentación de la API en `http://localhost:3000/api-docs`
+## Documentacion de la API
+La documentacion interactiva de la API esta disponible en:
+```
+http://localhost:3000/api-docs
+```
+Una vez iniciado el backend, puedes consultar y probar los endpoints desde esa URL.

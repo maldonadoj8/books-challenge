@@ -136,7 +136,7 @@ additionalButton = null }) => {
                     style={{ 
                       textAlign: 'center', 
                       padding: '32px', 
-                      color: '#6b7280' 
+                      color: '#000000' 
                     }}>
                       No hay datos para mostrar
                       </td>
@@ -221,7 +221,7 @@ additionalButton = null }) => {
           <span 
           style={{ 
             fontSize: '14px', 
-            color: '#6b7280' 
+            color: '#000000' 
           }}>
             Total: {totalItems} elementos
           </span>
@@ -292,20 +292,20 @@ additionalButton = null }) => {
 const thStyle = {
   padding  : '12px',
   textAlign: 'left',
-  color    : '#374151',
+  color    : '#000000',
   fontSize : '14px',
 };
 
 const tdStyle = {
   padding : '12px',
   fontSize: '14px',
-  color   : '#111827',
+  color   : '#000000',
 };
 
 const menuItemStyle = {
   padding     : '10px 16px',
   fontSize    : '14px',
-  color       : '#111827',
+  color       : '#000000',
   cursor      : 'pointer',
   whiteSpace  : 'nowrap',
   borderBottom: '1px solid #eee',
